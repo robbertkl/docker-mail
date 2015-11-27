@@ -1,0 +1,7 @@
+#!/bin/bash
+
+touch /data/virtual
+postmap /data/virtual
+
+postfix check 2>&1 || exit ${?}
+exec /usr/lib/postfix/master -d

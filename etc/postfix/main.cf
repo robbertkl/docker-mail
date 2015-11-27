@@ -1,0 +1,63 @@
+smtpd_tls_cert_file = /private/ssl/cert.pem
+smtpd_tls_key_file = /private/ssl/key.pem
+smtpd_tls_CAfile = /private/ssl/ca.pem
+smtpd_tls_auth_only = yes
+
+local_recipient_maps =
+recipient_delimiter = +
+virtual_alias_maps = hash:/data/virtual
+
+mailbox_transport = dovecot
+dovecot_destination_recipient_limit = 1
+
+message_size_limit = 536870912
+mailbox_size_limit = 10737418240
+
+spf_time_limit = 3600
+
+milter_default_action = accept
+milter_protocol = 2
+smtpd_milters = unix:greylist/greylist.sock,unix:opendkim/opendkim.sock,unix:opendmarc/opendmarc.sock
+submission_milters = unix:opendkim/opendkim.sock
+non_smtpd_milters = $submission_milters
+
+smtpd_helo_required = yes
+
+smtpd_helo_restrictions =
+  permit_mynetworks,
+  permit_sasl_authenticated,
+  reject_non_fqdn_helo_hostname,
+  reject_invalid_helo_hostname,
+  permit
+
+smtpd_sender_restrictions =
+  permit_mynetworks,
+  reject_non_fqdn_sender,
+  reject_unknown_sender_domain,
+  permit
+
+smtpd_recipient_restrictions =
+  reject_unauth_pipelining,
+  reject_non_fqdn_recipient,
+  reject_unknown_recipient_domain,
+  permit_mynetworks,
+  reject_unauth_destination,
+  reject_rbl_client dnsbl.sorbs.net,
+  reject_rbl_client zen.spamhaus.org,
+  reject_rbl_client bl.spamcop.net,
+  check_policy_service unix:private/spf,
+  permit
+
+submission_client_restrictions =
+  permit_sasl_authenticated,
+  reject
+
+submission_sender_restrictions =
+  reject_sender_login_mismatch,
+  permit
+
+submission_recipient_restrictions =
+  reject_non_fqdn_recipient,
+  reject_unknown_recipient_domain,
+  permit_sasl_authenticated,
+  reject

@@ -1,0 +1,4 @@
+#!/bin/bash
+
+cat /private/ssl/{cert,ca}.pem > /etc/dovecot/bundle.pem
+exec dovecot -F
