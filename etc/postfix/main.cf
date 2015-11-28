@@ -5,6 +5,7 @@ smtpd_tls_auth_only = yes
 
 local_recipient_maps =
 recipient_delimiter = +
+alias_maps = hash:/etc/aliases
 virtual_alias_maps = hash:/data/virtual
 
 mailbox_transport = dovecot
