@@ -11,7 +11,8 @@ RUN cleaninstall \
     opendkim \
     opendmarc \
     postfix \
-    postfix-policyd-spf-python
+    postfix-policyd-spf-python \
+    python3-authres
 
 # Configure services
 RUN rm -rf /etc/dovecot/*
