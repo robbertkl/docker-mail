@@ -1,4 +1,7 @@
-#!/bin/bash
+#!/usr/bin/with-contenv bash
+
+variables='${HOSTNAME}'
+envsubst "${variables}" < policyd-spf.conf.tmpl > /etc/postfix-policyd-spf-python/policyd-spf.conf
 
 touch /data/virtual
 postmap /data/virtual
