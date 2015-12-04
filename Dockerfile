@@ -1,4 +1,4 @@
-FROM robbertkl/base
+FROM robbertkl/base-s6
 MAINTAINER Robbert Klarenbeek <robbertkl@renbeek.nl>
 
 # Install packages and clean up after apt
