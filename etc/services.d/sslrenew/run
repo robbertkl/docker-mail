@@ -1,0 +1,17 @@
+#!/usr/bin/with-contenv bash
+
+if [ -z "${LETSENCRYPT_HOST}" ]
+then
+	exit
+fi
+
+LETSENCRYPT_DIR="/etc/letsencrypt/live/${LETSENCRYPT_HOST}"
+
+while :
+do
+	inotifywait -qq -e close_write,moved_to,create "${LETSENCRYPT_DIR}"
+	sleep 5
+	cat /private/ssl/{cert,ca}.pem > /etc/dovecot/bundle.pem
+	kill -HUP `pidof master`
+	kill -HUP `pidof dovecot`
+done

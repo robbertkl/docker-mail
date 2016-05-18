@@ -8,6 +8,7 @@ RUN cleaninstall \
     dovecot-managesieved \
     dovecot-sieve \
     geoip-database \
+    inotify-tools \
     milter-greylist \
     opendkim \
     opendmarc \
