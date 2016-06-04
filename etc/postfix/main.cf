@@ -18,7 +18,7 @@ spf_time_limit = 3600
 
 milter_default_action = accept
 milter_protocol = 2
-smtpd_milters = unix:greylist/greylist.sock,unix:opendkim/opendkim.sock,unix:opendmarc/opendmarc.sock
+smtpd_milters = unix:opendkim/opendkim.sock,unix:opendmarc/opendmarc.sock
 submission_milters = unix:opendkim/opendkim.sock
 non_smtpd_milters = $submission_milters
 

@@ -10,7 +10,6 @@ Software:
 * Dovecot as LDA (IMAP) + sieve
 * OpenDKIM for DKIM checking / signing
 * OpenDMARC for DMARC checking
-* milter-greylist for greylist filtering
 * postfix-policyd-spf-python for SPF checking
 
 Features / config:

@@ -9,7 +9,6 @@ RUN cleaninstall \
     dovecot-sieve \
     geoip-database \
     inotify-tools \
-    milter-greylist \
     opendkim \
     opendmarc \
     postfix \
@@ -23,9 +22,8 @@ COPY etc /etc
 # Setup rights and logging
 RUN groupadd -g 5000 vmail \
     && useradd -u 5000 -g vmail -s /usr/sbin/nologin -d /nonexistent vmail \
-    && usermod -a -G greylist,opendkim,opendmarc postfix \
-    && bash -c "mkdir -p /var/spool/postfix/{greylist,opendkim,opendmarc}" \
-    && chown greylist: /var/spool/postfix/greylist \
+    && usermod -a -G opendkim,opendmarc postfix \
+    && bash -c "mkdir -p /var/spool/postfix/{opendkim,opendmarc}" \
     && chown opendkim: /var/spool/postfix/opendkim \
     && chown opendmarc: /var/spool/postfix/opendmarc \
     && bash -c "touch /var/log/mail.{err,log}" \
