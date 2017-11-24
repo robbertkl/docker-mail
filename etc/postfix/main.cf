@@ -1,3 +1,5 @@
+inet_protocols = all
+
 smtpd_tls_cert_file = /private/ssl/cert.pem
 smtpd_tls_key_file = /private/ssl/key.pem
 smtpd_tls_CAfile = /private/ssl/ca.pem
