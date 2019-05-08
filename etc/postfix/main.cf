@@ -46,7 +46,6 @@ smtpd_recipient_restrictions =
   reject_unknown_recipient_domain,
   permit_mynetworks,
   reject_unauth_destination,
-  permit_dnswl_client list.dnswl.org,
   reject_rhsbl_client rhsbl.sorbs.net,
   reject_rhsbl_sender rhsbl.sorbs.net,
   reject_rhsbl_client dbl.spamhaus.org,
